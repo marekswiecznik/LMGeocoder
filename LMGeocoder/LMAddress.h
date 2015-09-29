@@ -23,6 +23,11 @@
 /*!
  *  The precise street address.
  */
+@property (nonatomic, readonly, copy) NSString *subThoroughfare;
+
+/*!
+ *  The precise street address.
+ */
 @property (nonatomic, readonly, copy) NSString *thoroughfare;
 
 /*!

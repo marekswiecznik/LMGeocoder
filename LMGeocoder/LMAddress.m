@@ -37,6 +37,7 @@ static NSString * const LMLinesKey               = @"lines";
 @synthesize ISOcountryCode = _ISOcountryCode;
 @synthesize formattedAddress = _formattedAddress;
 @synthesize lines = _lines;
+@synthesize subThoroughfare = _subThoroughfare;
 
 #pragma mark - INIT
 
@@ -73,6 +74,7 @@ static NSString * const LMLinesKey               = @"lines";
         NSString *formattedAddress = [lines componentsJoinedByString:@", "];
         
         _coordinate = placemark.location.coordinate;
+        _subThoroughfare = placemark.subThoroughfare;
         _thoroughfare = placemark.thoroughfare;
         _locality = placemark.locality;
         _subLocality = placemark.subLocality;
@@ -97,7 +99,8 @@ static NSString * const LMLinesKey               = @"lines";
         double lng = [locationDict[@"geometry"][@"location"][@"lng"] doubleValue];
         
         _coordinate = CLLocationCoordinate2DMake(lat, lng);
-        _thoroughfare = [self component:@"street_number" inArray:lines ofType:@"long_name"];
+        _subThoroughfare = [self component:@"street_number" inArray:lines ofType:@"long_name"];
+        _thoroughfare = [self component:@"route" inArray:lines ofType:@"long_name"];
         _locality = [self component:@"locality" inArray:lines ofType:@"long_name"];
         _subLocality = [self component:@"subLocality" inArray:lines ofType:@"long_name"];
         _administrativeArea = [self component:@"administrative_area_level_1" inArray:lines ofType:@"long_name"];
